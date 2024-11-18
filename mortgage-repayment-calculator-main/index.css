@@ -1,0 +1,151 @@
+/*Colors
+### Primary
+
+- Lime: hsl(61, 70%, 52%)
+- Red: hsl(4, 69%, 50%)
+
+### Neutral
+
+- White: hsl(0, 0%, 100%)
+- Slate 100: hsl(202, 86%, 94%)
+- Slate 300: hsl(203, 41%, 72%)
+- Slate 500: hsl(200, 26%, 54%)
+- Slate 700: hsl(200, 24%, 40%)
+- Slate 900: hsl(202, 55%, 16%)
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+li,
+form,
+button {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+body {
+  background-color: hsl(202, 86%, 94%);
+}
+
+#card {
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 80%;
+  max-width: 60rem;
+  margin: auto;
+  margin-top: 25vh;
+}
+
+#left {
+  grid-column: 1/2;
+  padding: 2rem;
+}
+
+#right {
+  grid-column: 2/3;
+  background-color: hsl(202, 55%, 16%);
+  color: white;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+
+#formTitle {
+  grid-column: 1/5;
+  width: 100%;
+}
+
+#clearAll {
+  grid-column: 5/7;
+  width: 100%;
+  text-align: right;
+  align-self: last baseline;
+}
+
+#amount {
+  grid-column: 1/7;
+  width: 100%;
+}
+
+#amount input {
+  width: 100%;
+  height: 2.5rem;
+  margin-top: 0.5rem;
+}
+
+#term {
+  grid-column: 1/4;
+  width: 100%;
+}
+
+#term input {
+  width: 100%;
+  height: 2.5rem;
+  margin-top: 0.5rem;
+}
+
+
+#interestRate {
+  grid-column: 4/7;
+  width: 100%;
+}
+
+#interestRate input {
+  width: 100%;
+  height: 2.5rem;
+  margin-top: 0.5rem;
+}
+
+
+#radioButtons {
+  grid-column: 1/7;
+  width: 100%;
+}
+
+#repayment {
+  width: 100%;
+  border: solid 1px black;
+  height: 2.5rem;
+  margin-top: 0.5rem;
+}
+
+#interestOnly {
+  width: 100%;
+  border: solid 1px black;
+  height: 2.5rem;
+  margin-top: 0.5rem;
+}
+
+form button {
+  grid-column: 1/5;
+  height: 2.5rem;
+  margin-top: 0.5rem;
+
+}
+
+fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+form label {
+  margin-bottom: 1rem;
+}
