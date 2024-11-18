@@ -30,7 +30,8 @@ p,
 a,
 li,
 form,
-button {
+button,
+div {
   font-family: "Plus Jakarta Sans", sans-serif;
 }
 
@@ -59,6 +60,7 @@ body {
   color: white;
 }
 
+/*Form start -----------------------------------------------------------------*/
 form {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -78,39 +80,102 @@ form {
   align-self: last baseline;
 }
 
+.inputType {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  color: hsl(200, 24%, 40%);
+  background-color: hsl(202, 86%, 94%);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.wrapper {
+  border: solid, 1px, hsl(200, 24%, 40%);
+  border-radius: 5px;
+}
+
+form input {
+  border-radius: 5px;
+  border: none;
+}
+
+/*Amount start ------------------------------------------------*/
 #amount {
   grid-column: 1/7;
   width: 100%;
 }
 
-#amount input {
-  width: 100%;
+#amountWrapper {
   height: 2.5rem;
   margin-top: 0.5rem;
+  display: flex;
+
 }
+
+#pound {
+  border-radius: 5px 0 0 5px;
+}
+
+#amountInput {
+  border: none;
+  flex-grow: 1;
+}
+
+/*Amount end --------------------------------------------------*/
+
+
+
+/*Term start --------------------------------------------------*/
 
 #term {
   grid-column: 1/4;
   width: 100%;
 }
 
-#term input {
-  width: 100%;
-  height: 2.5rem;
+#termWrapper {
   margin-top: 0.5rem;
+  height: 2.5rem;
+  display: flex;
 }
 
+#years {
+  border-radius: 0 5px 5px 0;
+}
+
+#termInput {
+  width: 100%;
+  flex-grow: 1;
+}
+
+/*Term end ----------------------------------------------------*/
+
+
+
+/*Interest rate start -----------------------------------------*/
 
 #interestRate {
   grid-column: 4/7;
   width: 100%;
 }
 
+#interestRateWrapper {
+  margin-top: 0.5rem;
+  height: 2.5rem;
+  display: flex;
+}
+
+#percent {
+  border-radius: 0 5px 5px 0;
+}
+
 #interestRate input {
   width: 100%;
-  height: 2.5rem;
-  margin-top: 0.5rem;
+  flex-grow: 1;
 }
+
+/*Interest rate end -------------------------------------------*/
 
 
 #radioButtons {

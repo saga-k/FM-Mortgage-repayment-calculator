@@ -27,21 +27,45 @@
         <h1 id="formTitle">Mortgage Calculator</h1>
         <a id="clearAll">Clear All</a>
 
+        <!-- amount start--------------------------------------->
         <div id="amount">
           <label>Mortgage Amount</label>
-          <input type="number" id="amountInput">
+          <div id="amountWrapper" class="wrapper">
+            <div id="pound" class="inputType">£</div>
+            <input type="number" id="amountInput">
+          </div>
         </div>
+
+        <!-- amount end----------------------------------------->
+
+
+        <!-- years start---------------------------------------->
 
         <div id="term">
           <label>Mortgage Term</label>
-          <input type="number" id="termInput">
+          <div id="termWrapper" class="wrapper">
+            <input type="number" id="termInput">
+            <div id="years" class="inputType">Years</div>
+          </div>
         </div>
+
+        <!-- years end------------------------------------------>
+
+
+        <!-- Interest rate start-------------------------------->
 
         <div id="interestRate">
           <label>Interest Rate</label>
-          <input type="number" id="interestRateInput">
+          <div id="interestRateWrapper" class="wrapper">
+            <input type="number" id="interestRateInput">
+            <div id="percent" class="inputType">%</div>
+          </div>
         </div>
 
+        <!-- Interest rate end---------------------------------->
+
+
+        <!-- Radio buttons start-------------------------------->
 
         <fieldset id="radioButtons">
           <legend>Mortgage Type</legend>
@@ -55,6 +79,8 @@
           </div>
 
         </fieldset>
+
+        <!-- Radio buttons end---------------------------------->
 
         <button type="submit">Calculate Repayments</button>
       </form>
