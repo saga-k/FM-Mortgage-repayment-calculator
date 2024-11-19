@@ -29,7 +29,7 @@
 
         <!-- amount start--------------------------------------->
         <div id="amount">
-          <label>Mortgage Amount</label>
+          <label class="label">Mortgage Amount</label>
           <div id="amountWrapper" class="wrapper">
             <div id="pound" class="inputType">£</div>
             <input type="number" id="amountInput">
@@ -42,7 +42,7 @@
         <!-- years start---------------------------------------->
 
         <div id="term">
-          <label>Mortgage Term</label>
+          <label class="label">Mortgage Term</label>
           <div id="termWrapper" class="wrapper">
             <input type="number" id="termInput">
             <div id="years" class="inputType">Years</div>
@@ -55,7 +55,7 @@
         <!-- Interest rate start-------------------------------->
 
         <div id="interestRate">
-          <label>Interest Rate</label>
+          <label class="label">Interest Rate</label>
           <div id="interestRateWrapper" class="wrapper">
             <input type="number" id="interestRateInput">
             <div id="percent" class="inputType">%</div>
@@ -68,15 +68,17 @@
         <!-- Radio buttons start-------------------------------->
 
         <fieldset id="radioButtons">
-          <legend>Mortgage Type</legend>
+          <legend class="label">Mortgage Type</legend>
 
-          <div id="repayment">
-            <input type="radio" name="mortgageType" class="radio">Repayment
-          </div>
+          <label id="repayment" class="radioButton">
+            <input type="radio" name="mortgageType" class="radio">
+            Repayment
+          </label>
 
-          <div id="interestOnly">
-            <input type="radio" name="mortgageType" class="radio">Interest Only
-          </div>
+          <label id="interestOnly" class="radioButton">
+            <input type="radio" name="mortgageType" class="radio">
+            Interest Only
+          </label>
 
         </fieldset>
 
@@ -87,33 +89,45 @@
     </div>
 
 
-    <!-- Empty results start -->
+    <!-- Empty results start -------------------------------------------------->
     <div id="right">
       <div id="emptyResults">
 
-        <p>Results shown here
+        <img src="assets/images/illustration-empty.svg">
 
-          Complete the form and click “calculate repayments” to see what
-          your monthly repayments would be.
+        <h2>Results shown here</h2>
+
+        <p>Complete the form and click “calculate repayments” to see what your monthly repayments would be.
         </p>
       </div>
 
-      <!-- Empty results end -->
+      <!-- Empty results end -------------------------------------------------->
 
 
 
       <!-- Completed results start -->
       <div id="completedResults">
-        <p>
-          Your results
 
+        <h2>Your results</h2>
+
+        <p>
           Your results are shown below based on the information you provided.
           To adjust the results, edit the form and click “calculate repayments” again.
-
-          Your monthly repayments
-
-          Total you'll repay over the term
         </p>
+
+        <div id="resultsBox">
+
+          <div id="monthlyPaymentsBox">
+            <p id="monthlyPaymentsTitle">Your monthly repayments</p>
+            <p id="monthlyPaymentsNumber">£00000</p>
+          </div>
+
+          <div id="totalPaymentsBox">
+            <P id="totalPaymentsTitle">Total you'll repay over the term</P>
+            <p id="totalPaymentsNumber">£000000</p>
+          </div>
+
+        </div>
 
       </div>
     </div>

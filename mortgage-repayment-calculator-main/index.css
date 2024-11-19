@@ -14,6 +14,20 @@
 - Slate 900: hsl(202, 55%, 16%)
 */
 
+
+
+/*Global start----------------------------------------------------------------*/
+
+:root {
+  --lime: hsl(61, 70%, 52%);
+  --red: hsl(4, 69%, 50%);
+  --lightBlue: hsl(202, 86%, 94%);
+  --blue300: hsl(203, 41%, 72%);
+  --blue500: hsl(200, 26%, 54%);
+  --blue700: hsl(200, 24%, 40%);
+  --darkBlue: hsl(202, 55%, 16%);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -31,13 +45,25 @@ a,
 li,
 form,
 button,
-div {
+div,
+input {
   font-family: "Plus Jakarta Sans", sans-serif;
 }
 
-body {
-  background-color: hsl(202, 86%, 94%);
+p {
+  line-height: 1.5em;
 }
+
+body {
+  background-color: var(--lightBlue);
+
+}
+
+/*Global end -----------------------------------------------------------------*/
+
+
+
+/*Card start -----------------------------------------------------------------*/
 
 #card {
   background-color: white;
@@ -46,7 +72,8 @@ body {
   width: 80%;
   max-width: 60rem;
   margin: auto;
-  margin-top: 25vh;
+  margin-top: 15vh;
+  border-radius: 30px;
 }
 
 #left {
@@ -56,9 +83,15 @@ body {
 
 #right {
   grid-column: 2/3;
-  background-color: hsl(202, 55%, 16%);
+  background-color: var(--darkBlue);
   color: white;
+  border-radius: 0 30px 30px 70px;
+  padding: 2rem;
 }
+
+/*Card end -------------------------------------------------------------------*/
+
+
 
 /*Form start -----------------------------------------------------------------*/
 form {
@@ -66,7 +99,6 @@ form {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 1rem;
 }
-
 
 #formTitle {
   grid-column: 1/5;
@@ -78,6 +110,9 @@ form {
   width: 100%;
   text-align: right;
   align-self: last baseline;
+  color: var(--blue700);
+  font-weight: 500;
+  text-decoration: underline;
 }
 
 .inputType {
@@ -85,20 +120,40 @@ form {
   justify-content: center;
   align-items: center;
   font-weight: 700;
-  color: hsl(200, 24%, 40%);
-  background-color: hsl(202, 86%, 94%);
+  color: var(--blue700);
+  background-color: var(--lightBlue);
   padding-left: 1rem;
   padding-right: 1rem;
 }
 
 .wrapper {
-  border: solid, 1px, hsl(200, 24%, 40%);
+  border: solid, 1.5px, var(--blue500);
   border-radius: 5px;
 }
 
 form input {
   border-radius: 5px;
   border: none;
+  font-size: 18px;
+  font-weight: 700;
+  padding-left: 1rem;
+  color: var(--darkBlue);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+.label {
+  color: var(--blue700);
+  margin-bottom: 1rem;
 }
 
 /*Amount start ------------------------------------------------*/
@@ -108,10 +163,9 @@ form input {
 }
 
 #amountWrapper {
-  height: 2.5rem;
+  height: 3rem;
   margin-top: 0.5rem;
   display: flex;
-
 }
 
 #pound {
@@ -136,7 +190,7 @@ form input {
 
 #termWrapper {
   margin-top: 0.5rem;
-  height: 2.5rem;
+  height: 3rem;
   display: flex;
 }
 
@@ -162,7 +216,7 @@ form input {
 
 #interestRateWrapper {
   margin-top: 0.5rem;
-  height: 2.5rem;
+  height: 3rem;
   display: flex;
 }
 
@@ -178,6 +232,9 @@ form input {
 /*Interest rate end -------------------------------------------*/
 
 
+
+/*Radio buttons start------------------------------------------*/
+
 #radioButtons {
   grid-column: 1/7;
   width: 100%;
@@ -185,23 +242,18 @@ form input {
 
 #repayment {
   width: 100%;
-  border: solid 1px black;
-  height: 2.5rem;
-  margin-top: 0.5rem;
+  border: solid 1.5px var(--blue500);
+  height: 3rem;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 #interestOnly {
   width: 100%;
-  border: solid 1px black;
-  height: 2.5rem;
-  margin-top: 0.5rem;
-}
-
-form button {
-  grid-column: 1/5;
-  height: 2.5rem;
-  margin-top: 0.5rem;
-
+  border: solid 1.5px var(--blue500);
+  height: 3rem;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 fieldset {
@@ -209,8 +261,131 @@ fieldset {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  color: var(--darkBlue);
 }
 
-form label {
-  margin-bottom: 1rem;
+.radioButton {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-left: 1rem;
+  border-radius: 5px;
+  margin: 0;
 }
+
+input[type="radio"] {
+  height: 1.2rem;
+  width: 1.2rem;
+  appearance: none;
+  border: 2px solid var(--blue700);
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+
+  &:checked {
+    border-color: var(--lime);
+    background-color: var(--lime);
+    box-shadow: inset 0 0 0 3px white;
+  }
+}
+
+
+/*Radio buttons end--------------------------------------------*/
+
+form button {
+  grid-column: 1/5;
+  height: 3rem;
+  margin-top: 0.5rem;
+  background-color: var(--lime);
+  font-weight: 700;
+  font-size: 18px;
+  border: none;
+  border-radius: 25px;
+  color: var(--darkBlue);
+
+
+  &:hover {
+    background-color: hsl(61, 76%, 69%);
+  }
+
+}
+
+/*Form end -------------------------------------------------------------------*/
+
+
+
+/*Results start ---------------------------------------------------------------*/
+
+
+
+/*Empty results start------------------------------------------*/
+
+#emptyResults {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+#emptyResults p {
+  color: var(--blue300);
+  text-align: center;
+}
+
+
+
+/*Empty results end -------------------------------------------*/
+
+
+
+/*Populated results start --------------------------------------*/
+
+#completedResults {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#resultsBox {
+  height: min-content;
+  background-color: black;
+  border-radius: 7px;
+  padding: 0 2rem 0 2rem;
+  box-shadow: 0 -3px var(--lime);
+}
+
+#monthlyPaymentsBox {
+  border-bottom: 1px solid var(--blue700);
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+
+#monthlyPaymentsTitle {
+  color: var(--blue300);
+}
+
+#monthlyPaymentsNumber {
+  color: var(--lime);
+  font-weight: 700;
+  font-size: 60px;
+}
+
+#totalPaymentsBox {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+#totalPaymentsTitle {
+  color: var(--blue300);
+}
+
+#totalPaymentsNumber {
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+/*Populated results end --------------------------------------*/
+
+/*Results end ---------------------------------------------------------------*/
