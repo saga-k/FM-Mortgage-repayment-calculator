@@ -29,7 +29,7 @@
 
         <!-- amount start--------------------------------------->
         <div id="amount">
-          <label>Mortgage Amount</label>
+          <label class="label">Mortgage Amount</label>
           <div id="amountWrapper" class="wrapper">
             <div id="pound" class="inputType">£</div>
             <input type="number" id="amountInput">
@@ -42,7 +42,7 @@
         <!-- years start---------------------------------------->
 
         <div id="term">
-          <label>Mortgage Term</label>
+          <label class="label">Mortgage Term</label>
           <div id="termWrapper" class="wrapper">
             <input type="number" id="termInput">
             <div id="years" class="inputType">Years</div>
@@ -55,7 +55,7 @@
         <!-- Interest rate start-------------------------------->
 
         <div id="interestRate">
-          <label>Interest Rate</label>
+          <label class="label">Interest Rate</label>
           <div id="interestRateWrapper" class="wrapper">
             <input type="number" id="interestRateInput">
             <div id="percent" class="inputType">%</div>
@@ -68,7 +68,7 @@
         <!-- Radio buttons start-------------------------------->
 
         <fieldset id="radioButtons">
-          <legend>Mortgage Type</legend>
+          <legend class="label">Mortgage Type</legend>
 
           <label id="repayment" class="radioButton">
             <input type="radio" name="mortgageType" class="radio">
@@ -84,7 +84,9 @@
 
         <!-- Radio buttons end---------------------------------->
 
-        <button type="submit">Calculate Repayments</button>
+        <button type="submit"><img src="assets/images/icon-calculator.svg">
+          <p>Calculate Repayments</p>
+        </button>
       </form>
     </div>
 
@@ -119,12 +121,14 @@
         <div id="resultsBox">
 
           <div id="monthlyPaymentsBox">
-            <p>Your monthly repayments</p>
+            <p id="monthlyPaymentsTitle">Your monthly repayments</p>
+            <h3 id="monthlyPaymentsNumber">£00000</h3>
           </div>
 
 
           <div id="totalPaymentsBox">
-            Total you'll repay over the term
+            <p id="totalPaymentsTitle">Total you'll repay over the term</p>
+            <h4 id="totalPaymentsNumber">£00000</h4>
           </div>
 
         </div>

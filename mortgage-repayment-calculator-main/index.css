@@ -69,11 +69,11 @@ body {
   background-color: white;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 80%;
   max-width: 60rem;
   margin: auto;
   margin-top: 15vh;
   border-radius: 30px;
+  width: 900px;
 }
 
 #left {
@@ -302,6 +302,10 @@ form button {
   border: none;
   border-radius: 25px;
   color: var(--darkBlue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 
 
   &:hover {

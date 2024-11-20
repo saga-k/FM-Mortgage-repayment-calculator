@@ -9,3 +9,5 @@ const clearAll = document.querySelector('#clearAll');
 
 const emptyResults = document.querySelector('#emptyResults');
 const completedResults = document.querySelector('#completedResults');
+const monthlyPayments = document.querySelector('#monthlyPaymentsNumber');
+const totalPayments = document.querySelector('#totalPaymentsNumber');
