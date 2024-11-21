@@ -75,8 +75,7 @@ interestOnlyRadio.addEventListener('click', updateType);
 
 function updateType() {
   radioButtonsChecked = document.querySelector('input[name="mortgageType"]:checked') as HTMLInputElement;
-  console.log(radioButtonsChecked.value);
-  console.log(typeof (radioButtonsChecked.value));
+
   if (radioButtonsChecked.value === 'repayment') {
     mortgageType = 'repayment';
   } else if (radioButtonsChecked.value === 'interestOnly') {
@@ -90,10 +89,19 @@ function updateType() {
 
 
 //Calculations start -----------------------------------------------------------
-document.addEventListener("keydown", function (event) {
-  if (event.code === "Space") { // Checks if the spacebar is pressed
-    event.preventDefault(); // Prevents the default behavior (e.g., page scrolling)
-    calculateRepayment();
+
+button.addEventListener("click", function (event) {
+  if (mortgageType === 'interestOnly') {
+    event.preventDefault();
+    let result = calculateInterestOnly();
+    monthlyPayments.textContent = result[0];
+    totalPayments.textContent = result[1];
+
+  } else if (mortgageType === 'repayment') {
+    event.preventDefault();
+    let result = calculateRepayment();
+    monthlyPayments.textContent = result[0];
+    totalPayments.textContent = result[1];
   }
 });
 
@@ -104,8 +112,12 @@ function calculateInterestOnly() {
   let yearlyInterest = amountValue * decimal;
   let monthlyInterest = yearlyInterest / 12;
   let totalInterest = yearlyInterest * termValue;
-  console.log(totalInterest);
+
+  return [monthlyInterest.toString(), totalInterest.toString()];
 }
+
+
+//Calculate repayment start -------------------------------------
 
 function calculateRepayment() {
   let decimal = interestRateValue / 100;
@@ -127,7 +139,6 @@ function calculateRepayment() {
     yearlyInterest = amountLeft * decimal;
 
     totalPayments += (amountLeft + yearlyInterest);
-
   }
 
 
@@ -136,4 +147,6 @@ function calculateRepayment() {
   let monthlyPayments = yearlyPayments / 12;
   console.log(monthlyPayments, 'monthly')
 
+  return [monthlyPayments.toString(), totalPayments.toString()]
 }
+//Calculate repayment end ---------------------------------------

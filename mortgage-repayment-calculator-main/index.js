@@ -53,8 +53,6 @@ radioRepayment.addEventListener('click', updateType);
 interestOnlyRadio.addEventListener('click', updateType);
 function updateType() {
     radioButtonsChecked = document.querySelector('input[name="mortgageType"]:checked');
-    console.log(radioButtonsChecked.value);
-    console.log(typeof (radioButtonsChecked.value));
     if (radioButtonsChecked.value === 'repayment') {
         mortgageType = 'repayment';
     }
@@ -67,10 +65,18 @@ function updateType() {
 }
 //Form inputs end --------------------------------------------------------------
 //Calculations start -----------------------------------------------------------
-document.addEventListener("keydown", function (event) {
-    if (event.code === "Space") { // Checks if the spacebar is pressed
-        event.preventDefault(); // Prevents the default behavior (e.g., page scrolling)
-        calculateRepayment();
+button.addEventListener("click", function (event) {
+    if (mortgageType === 'interestOnly') {
+        event.preventDefault();
+        var result = calculateInterestOnly();
+        monthlyPayments.textContent = result[0];
+        totalPayments.textContent = result[1];
+    }
+    else if (mortgageType === 'repayment') {
+        event.preventDefault();
+        var result = calculateRepayment();
+        monthlyPayments.textContent = result[0];
+        totalPayments.textContent = result[1];
     }
 });
 function calculateInterestOnly() {
@@ -79,8 +85,9 @@ function calculateInterestOnly() {
     var yearlyInterest = amountValue * decimal;
     var monthlyInterest = yearlyInterest / 12;
     var totalInterest = yearlyInterest * termValue;
-    console.log(totalInterest);
+    return [monthlyInterest.toString(), totalInterest.toString()];
 }
+//Calculate repayment start -------------------------------------
 function calculateRepayment() {
     var decimal = interestRateValue / 100;
     console.log(decimal, 'decimal');
@@ -100,5 +107,7 @@ function calculateRepayment() {
     var yearlyPayments = totalPayments / termValue;
     var monthlyPayments = yearlyPayments / 12;
     console.log(monthlyPayments, 'monthly');
+    return [monthlyPayments.toString(), totalPayments.toString()];
 }
+//Calculate repayment end ---------------------------------------
 //# sourceMappingURL=index.js.map
