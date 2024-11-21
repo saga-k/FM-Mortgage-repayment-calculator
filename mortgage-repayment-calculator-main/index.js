@@ -6,9 +6,12 @@ var blue = 'hsl(200, 24%, 40%)';
 var form = document.querySelector('form');
 var mortgageAmount = document.querySelector('#amountInput');
 var mortgageTerm = document.querySelector('#termInput');
+var interestRate = document.querySelector('#interestRateInput');
 var radioRepayment = document.querySelector('#radioRepayment');
+var radioRepaymentChecked = document.querySelector('#radioRepayment:checked');
 var labelRepayment = document.querySelector('#repaymentLabel');
 var interestOnlyRadio = document.querySelector('#radioInterestOnly');
+var interestOnlyRadioChecked = document.querySelector('#radioInterestOnly:checked');
 var interestOnlyLabel = document.querySelector('#interestOnlyLabel');
 var button = document.querySelector('button');
 var clearAll = document.querySelector('#clearAll');
@@ -16,7 +19,8 @@ var emptyResults = document.querySelector('#emptyResults');
 var completedResults = document.querySelector('#completedResults');
 var monthlyPayments = document.querySelector('#monthlyPaymentsNumber');
 var totalPayments = document.querySelector('#totalPaymentsNumber');
-//console.log(radioRepayment);
+//Initial function calls start -------------------------------------------------
+//Initial function calls end ---------------------------------------------------
 //Styling functions start ------------------------------------------------------
 radioRepayment.addEventListener('focus', function () {
     labelRepayment.style.borderColor = lime;
@@ -26,9 +30,36 @@ radioRepayment.addEventListener('blur', function () {
 });
 interestOnlyRadio.addEventListener('focus', function () {
     interestOnlyLabel.style.borderColor = lime;
+    labelRepayment.style.borderColor = blue;
 });
 interestOnlyRadio.addEventListener('blur', function () {
     interestOnlyLabel.style.borderColor = blue;
 });
 //Styling functions end --------------------------------------------------------
+var amountValue = Number(mortgageAmount.value);
+var termValue = Number(mortgageTerm.value);
+var interestRateValue = Number(interestRate.value);
+var mortgageType = '';
+document.addEventListener('keyup', function () {
+    updateValues();
+});
+function updateValues() {
+    amountValue = Number(mortgageAmount.value);
+    termValue = Number(mortgageTerm.value);
+}
+radioRepayment.addEventListener('click', updateType);
+interestOnlyRadio.addEventListener('click', updateType);
+function updateType() {
+    console.log(radioRepaymentChecked.value);
+    if (radioRepaymentChecked) {
+        mortgageType = radioRepaymentChecked.value;
+    }
+    else if (interestOnlyRadioChecked) {
+        mortgageType = interestOnlyRadioChecked.value;
+    }
+    else {
+        mortgageType = '';
+    }
+    console.log(mortgageType);
+}
 //# sourceMappingURL=index.js.map
