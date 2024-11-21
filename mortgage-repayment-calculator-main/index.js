@@ -1,6 +1,6 @@
 "use strict";
 //Colors
-var lime = 'hsl(61, 70%, 52%';
+var lime = 'hsl(61, 70%, 52%)';
 var blue = 'hsl(200, 24%, 40%)';
 //Query selectors start --------------------------------------------------------
 var form = document.querySelector('form');
@@ -8,10 +8,8 @@ var mortgageAmount = document.querySelector('#amountInput');
 var mortgageTerm = document.querySelector('#termInput');
 var interestRate = document.querySelector('#interestRateInput');
 var radioRepayment = document.querySelector('#radioRepayment');
-var radioRepaymentChecked = document.querySelector('#radioRepayment:checked');
 var labelRepayment = document.querySelector('#repaymentLabel');
 var interestOnlyRadio = document.querySelector('#radioInterestOnly');
-var interestOnlyRadioChecked = document.querySelector('#radioInterestOnly:checked');
 var interestOnlyLabel = document.querySelector('#interestOnlyLabel');
 var radioButtons = document.querySelectorAll('input[name="mortgageType"]');
 var radioButtonsChecked = document.querySelector('input[name="mortgageType"]:checked');
@@ -52,8 +50,9 @@ function updateValues() {
 radioRepayment.addEventListener('click', updateType);
 interestOnlyRadio.addEventListener('click', updateType);
 function updateType() {
+    radioButtonsChecked = document.querySelector('input[name="mortgageType"]:checked');
     console.log(radioButtons);
-    console.log(radioButtonsChecked);
+    console.log(radioButtonsChecked.value);
     if (radioButtonsChecked.value === 'repayment') {
         mortgageType = radioButtonsChecked.value;
     }
