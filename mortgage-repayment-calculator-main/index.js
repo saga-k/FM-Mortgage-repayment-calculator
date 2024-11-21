@@ -13,6 +13,8 @@ var labelRepayment = document.querySelector('#repaymentLabel');
 var interestOnlyRadio = document.querySelector('#radioInterestOnly');
 var interestOnlyRadioChecked = document.querySelector('#radioInterestOnly:checked');
 var interestOnlyLabel = document.querySelector('#interestOnlyLabel');
+var radioButtons = document.querySelectorAll('input[name="mortgageType"]');
+var radioButtonsChecked = document.querySelector('input[name="mortgageType"]:checked');
 var button = document.querySelector('button');
 var clearAll = document.querySelector('#clearAll');
 var emptyResults = document.querySelector('#emptyResults');
@@ -50,16 +52,16 @@ function updateValues() {
 radioRepayment.addEventListener('click', updateType);
 interestOnlyRadio.addEventListener('click', updateType);
 function updateType() {
-    console.log(radioRepaymentChecked.value);
-    if (radioRepaymentChecked) {
-        mortgageType = radioRepaymentChecked.value;
+    console.log(radioButtons);
+    console.log(radioButtonsChecked);
+    if (radioButtonsChecked.value === 'repayment') {
+        mortgageType = radioButtonsChecked.value;
     }
-    else if (interestOnlyRadioChecked) {
-        mortgageType = interestOnlyRadioChecked.value;
+    else if (radioButtonsChecked.value === 'interestOnly') {
+        mortgageType = radioButtonsChecked.value;
     }
     else {
         mortgageType = '';
     }
-    console.log(mortgageType);
 }
 //# sourceMappingURL=index.js.map

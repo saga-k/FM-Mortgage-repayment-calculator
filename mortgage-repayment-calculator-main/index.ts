@@ -18,6 +18,9 @@ const interestOnlyRadio = document.querySelector('#radioInterestOnly') as HTMLEl
 let interestOnlyRadioChecked = document.querySelector('#radioInterestOnly:checked') as HTMLInputElement;
 const interestOnlyLabel = document.querySelector('#interestOnlyLabel') as HTMLElement;
 
+const radioButtons = document.querySelectorAll('input[name="mortgageType"]');
+let radioButtonsChecked = document.querySelector('input[name="mortgageType"]:checked') as HTMLInputElement;
+
 const button = document.querySelector('button') as HTMLElement;
 const clearAll = document.querySelector('#clearAll') as HTMLElement;
 
@@ -70,13 +73,13 @@ radioRepayment.addEventListener('click', updateType);
 interestOnlyRadio.addEventListener('click', updateType);
 
 function updateType() {
-  console.log(radioRepaymentChecked.value);
-  if (radioRepaymentChecked) {
-    mortgageType = radioRepaymentChecked.value;
-  } else if (interestOnlyRadioChecked) {
-    mortgageType = interestOnlyRadioChecked.value;
+  console.log(radioButtons);
+  console.log(radioButtonsChecked);
+  if (radioButtonsChecked.value === 'repayment') {
+    mortgageType = radioButtonsChecked.value;
+  } else if (radioButtonsChecked.value === 'interestOnly') {
+    mortgageType = radioButtonsChecked.value;
   } else {
     mortgageType = ''
   }
-  console.log(mortgageType);
 }
