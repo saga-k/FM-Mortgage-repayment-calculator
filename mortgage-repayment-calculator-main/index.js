@@ -36,6 +36,7 @@ interestOnlyRadio.addEventListener('blur', function () {
     interestOnlyLabel.style.borderColor = blue;
 });
 //Styling functions end --------------------------------------------------------
+//Form inputs start ------------------------------------------------------------
 var amountValue = Number(mortgageAmount.value);
 var termValue = Number(mortgageTerm.value);
 var interestRateValue = Number(interestRate.value);
@@ -46,21 +47,37 @@ document.addEventListener('keyup', function () {
 function updateValues() {
     amountValue = Number(mortgageAmount.value);
     termValue = Number(mortgageTerm.value);
+    interestRateValue = Number(interestRate.value);
 }
 radioRepayment.addEventListener('click', updateType);
 interestOnlyRadio.addEventListener('click', updateType);
 function updateType() {
     radioButtonsChecked = document.querySelector('input[name="mortgageType"]:checked');
-    console.log(radioButtons);
     console.log(radioButtonsChecked.value);
+    console.log(typeof (radioButtonsChecked.value));
     if (radioButtonsChecked.value === 'repayment') {
-        mortgageType = radioButtonsChecked.value;
+        mortgageType = 'repayment';
     }
     else if (radioButtonsChecked.value === 'interestOnly') {
-        mortgageType = radioButtonsChecked.value;
+        mortgageType = 'interestOnly';
     }
     else {
         mortgageType = '';
     }
+}
+//Form inputs end --------------------------------------------------------------
+//Calculations start -----------------------------------------------------------
+document.addEventListener("keydown", function (event) {
+    if (event.code === "Space") { // Checks if the spacebar is pressed
+        event.preventDefault(); // Prevents the default behavior (e.g., page scrolling)
+        calculate();
+    }
+});
+function calculate() {
+    var decimal = interestRateValue / 100;
+    console.log(decimal, 'decimal');
+    var yearlyInterest = amountValue * decimal;
+    var totalInterest = yearlyInterest * termValue;
+    console.log(totalInterest);
 }
 //# sourceMappingURL=index.js.map

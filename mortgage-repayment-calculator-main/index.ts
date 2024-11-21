@@ -53,6 +53,8 @@ interestOnlyRadio.addEventListener('blur', () => {
 
 //Styling functions end --------------------------------------------------------
 
+//Form inputs start ------------------------------------------------------------
+
 let amountValue = Number(mortgageAmount.value);
 let termValue = Number(mortgageTerm.value);
 let interestRateValue = Number(interestRate.value);
@@ -65,6 +67,7 @@ document.addEventListener('keyup', () => {
 function updateValues() {
   amountValue = Number(mortgageAmount.value);
   termValue = Number(mortgageTerm.value);
+  interestRateValue = Number(interestRate.value);
 }
 
 radioRepayment.addEventListener('click', updateType);
@@ -72,13 +75,33 @@ interestOnlyRadio.addEventListener('click', updateType);
 
 function updateType() {
   radioButtonsChecked = document.querySelector('input[name="mortgageType"]:checked') as HTMLInputElement;
-  console.log(radioButtons);
   console.log(radioButtonsChecked.value);
+  console.log(typeof (radioButtonsChecked.value));
   if (radioButtonsChecked.value === 'repayment') {
-    mortgageType = radioButtonsChecked.value;
+    mortgageType = 'repayment';
   } else if (radioButtonsChecked.value === 'interestOnly') {
-    mortgageType = radioButtonsChecked.value;
+    mortgageType = 'interestOnly';
   } else {
     mortgageType = ''
   }
+}
+//Form inputs end --------------------------------------------------------------
+
+
+
+//Calculations start -----------------------------------------------------------
+document.addEventListener("keydown", function (event) {
+  if (event.code === "Space") { // Checks if the spacebar is pressed
+    event.preventDefault(); // Prevents the default behavior (e.g., page scrolling)
+    calculate();
+  }
+});
+
+function calculate() {
+  let decimal = interestRateValue / 100;
+  console.log(decimal, 'decimal');
+
+  let yearlyInterest = amountValue * decimal;
+  let totalInterest = yearlyInterest * termValue
+  console.log(totalInterest);
 }
