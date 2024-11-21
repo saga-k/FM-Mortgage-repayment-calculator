@@ -84,26 +84,20 @@ function calculateInterestOnly() {
 function calculateRepayment() {
     var decimal = interestRateValue / 100;
     console.log(decimal, 'decimal');
-    //let monthlyInterest = yearlyInterest / 12;
-    //let totalInterest = yearlyInterest * termValue;
-    //console.log(totalInterest);
     var yearlyRepayment = amountValue / termValue;
     console.log(yearlyRepayment, 'yearlyRepayment');
     var yearlyInterest = amountValue * decimal;
     var repaid = 0;
     var amountLeft = amountValue;
-    var yearlyTotal = 0;
+    var totalPayments = 0;
     for (var i = 0; i < termValue; i++) {
         repaid += yearlyRepayment;
-        console.log('repaid', repaid);
         amountLeft -= yearlyRepayment;
-        console.log('amount left', amountLeft);
         yearlyInterest = amountLeft * decimal;
-        console.log('yearlyInterest', yearlyInterest);
-        yearlyTotal += (amountLeft + yearlyInterest);
-        console.log(yearlyTotal);
+        totalPayments += (amountLeft + yearlyInterest);
     }
-    var totalPayments = yearlyTotal * termValue;
-    var monthlyPayments = yearlyTotal / 12;
+    console.log(totalPayments, 'total');
+    var monthlyPayments = totalPayments / 12;
+    console.log(monthlyPayments, 'monthly');
 }
 //# sourceMappingURL=index.js.map

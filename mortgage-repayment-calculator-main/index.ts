@@ -111,29 +111,28 @@ function calculateRepayment() {
   let decimal = interestRateValue / 100;
   console.log(decimal, 'decimal');
 
-  //let monthlyInterest = yearlyInterest / 12;
-  //let totalInterest = yearlyInterest * termValue;
-  //console.log(totalInterest);
-
   let yearlyRepayment = amountValue / termValue;
   console.log(yearlyRepayment, 'yearlyRepayment');
 
   let yearlyInterest = amountValue * decimal;
   let repaid = 0
   let amountLeft = amountValue
-  let yearlyTotal = 0
+  let totalPayments = 0
 
   for (let i = 0; i < termValue; i++) {
     repaid += yearlyRepayment
-    console.log('repaid', repaid)
+
     amountLeft -= yearlyRepayment;
-    console.log('amount left', amountLeft)
+
     yearlyInterest = amountLeft * decimal;
-    console.log('yearlyInterest', yearlyInterest);
-    yearlyTotal += (amountLeft + yearlyInterest);
-    console.log(yearlyTotal);
+
+    totalPayments += (amountLeft + yearlyInterest);
+
   }
 
-  let totalPayments = yearlyTotal * termValue;
-  let monthlyPayments = yearlyTotal / 12;
+
+  console.log(totalPayments, 'total')
+  let monthlyPayments = totalPayments / 12;
+  console.log(monthlyPayments, 'monthly')
+
 }
