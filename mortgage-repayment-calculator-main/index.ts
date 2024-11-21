@@ -93,15 +93,47 @@ function updateType() {
 document.addEventListener("keydown", function (event) {
   if (event.code === "Space") { // Checks if the spacebar is pressed
     event.preventDefault(); // Prevents the default behavior (e.g., page scrolling)
-    calculate();
+    calculateRepayment();
   }
 });
 
-function calculate() {
+function calculateInterestOnly() {
   let decimal = interestRateValue / 100;
   console.log(decimal, 'decimal');
 
   let yearlyInterest = amountValue * decimal;
-  let totalInterest = yearlyInterest * termValue
+  let monthlyInterest = yearlyInterest / 12;
+  let totalInterest = yearlyInterest * termValue;
   console.log(totalInterest);
+}
+
+function calculateRepayment() {
+  let decimal = interestRateValue / 100;
+  console.log(decimal, 'decimal');
+
+  //let monthlyInterest = yearlyInterest / 12;
+  //let totalInterest = yearlyInterest * termValue;
+  //console.log(totalInterest);
+
+  let yearlyRepayment = amountValue / termValue;
+  console.log(yearlyRepayment, 'yearlyRepayment');
+
+  let yearlyInterest = amountValue * decimal;
+  let repaid = 0
+  let amountLeft = amountValue
+  let yearlyTotal = 0
+
+  for (let i = 0; i < termValue; i++) {
+    repaid += yearlyRepayment
+    console.log('repaid', repaid)
+    amountLeft -= yearlyRepayment;
+    console.log('amount left', amountLeft)
+    yearlyInterest = amountLeft * decimal;
+    console.log('yearlyInterest', yearlyInterest);
+    yearlyTotal += (amountLeft + yearlyInterest);
+    console.log(yearlyTotal);
+  }
+
+  let totalPayments = yearlyTotal * termValue;
+  let monthlyPayments = yearlyTotal / 12;
 }
