@@ -132,7 +132,8 @@ function calculateRepayment() {
 
 
   console.log(totalPayments, 'total')
-  let monthlyPayments = totalPayments / 12;
+  let yearlyPayments = totalPayments / termValue;
+  let monthlyPayments = yearlyPayments / 12;
   console.log(monthlyPayments, 'monthly')
 
 }

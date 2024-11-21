@@ -97,7 +97,8 @@ function calculateRepayment() {
         totalPayments += (amountLeft + yearlyInterest);
     }
     console.log(totalPayments, 'total');
-    var monthlyPayments = totalPayments / 12;
+    var yearlyPayments = totalPayments / termValue;
+    var monthlyPayments = yearlyPayments / 12;
     console.log(monthlyPayments, 'monthly');
 }
 //# sourceMappingURL=index.js.map
