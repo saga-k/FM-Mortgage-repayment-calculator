@@ -1,12 +1,19 @@
 //Colors
 const lime = 'hsl(61, 70%, 52%)';
+const lime95 = 'hsl(61 70% 95%)';
 const blue = 'hsl(200, 24%, 40%)';
-
+const red = 'hsl(4, 69%, 50%)';
+const lightBlue = 'hsl(202, 86%, 94%)';
 
 //Query selectors start --------------------------------------------------------
 
 const form = document.querySelector('form') as HTMLElement;
+
 const mortgageAmount = document.querySelector('#amountInput') as HTMLInputElement;
+const amountWrapper = document.querySelector('#amountWrapper') as HTMLElement;
+const pound = document.querySelector('#pound') as HTMLElement;
+
+
 const mortgageTerm = document.querySelector('#termInput') as HTMLInputElement;
 const interestRate = document.querySelector('#interestRateInput') as HTMLInputElement;
 
@@ -27,29 +34,50 @@ const completedResults = document.querySelector('#completedResults') as HTMLElem
 const monthlyPayments = document.querySelector('#monthlyPaymentsNumber') as HTMLElement;
 const totalPayments = document.querySelector('#totalPaymentsNumber') as HTMLElement;
 
-//Initial function calls start -------------------------------------------------
+const amountError = document.querySelector('#amountError') as HTMLElement;
+const termError = document.querySelector('#termError') as HTMLElement;
+const rateError = document.querySelector('#rateError') as HTMLElement;
+const typeError = document.querySelector('#typeError') as HTMLElement;
+
+//Initial styling start --------------------------------------------------------
+
+amountError.style.display = 'none';
+termError.style.display = 'none';
+rateError.style.display = 'none';
+typeError.style.display = 'none';
 
 
-//Initial function calls end ---------------------------------------------------
+//Initial styling end ----------------------------------------------------------
 
 //Styling functions start ------------------------------------------------------
 
-radioRepayment.addEventListener('focus', () => {
-  labelRepayment.style.borderColor = lime;
-});
+radioRepayment.addEventListener('click', radioActiveState);
+interestOnlyRadio.addEventListener('click', radioActiveState);
 
-radioRepayment.addEventListener('blur', () => {
-  labelRepayment.style.borderColor = blue;
-});
+function radioActiveState() {
+  radioButtonsChecked = document.querySelector('input[name="mortgageType"]:checked') as HTMLInputElement;
+  if (radioButtonsChecked.value === 'repayment') {
+    labelRepayment.style.borderColor = lime;
+    labelRepayment.style.backgroundColor = lime95;
 
-interestOnlyRadio.addEventListener('focus', () => {
-  interestOnlyLabel.style.borderColor = lime;
-  labelRepayment.style.borderColor = blue;
-});
+    interestOnlyLabel.style.borderColor = blue;
+    interestOnlyLabel.style.backgroundColor = 'white';
 
-interestOnlyRadio.addEventListener('blur', () => {
-  interestOnlyLabel.style.borderColor = blue;
-});
+  } else if (radioButtonsChecked.value === 'interestOnly') {
+    interestOnlyLabel.style.borderColor = lime;
+    interestOnlyLabel.style.backgroundColor = lime95;
+
+    labelRepayment.style.borderColor = blue;
+    labelRepayment.style.backgroundColor = 'white';
+
+  } else {
+    labelRepayment.style.borderColor = blue;
+    labelRepayment.style.borderColor = blue;
+
+    labelRepayment.style.backgroundColor = 'white';
+    labelRepayment.style.backgroundColor = 'white';
+  }
+};
 
 //Styling functions end --------------------------------------------------------
 
@@ -90,20 +118,35 @@ function updateType() {
 
 //Calculations start -----------------------------------------------------------
 
-button.addEventListener("click", function (event) {
-  if (mortgageType === 'interestOnly') {
-    event.preventDefault();
-    let result = calculateInterestOnly();
-    monthlyPayments.textContent = result[0];
-    totalPayments.textContent = result[1];
+//Function call start -------------------------------------------
 
-  } else if (mortgageType === 'repayment') {
+button.addEventListener("click", function (event) {
+  if (!mortgageAmount.value || !mortgageTerm.value
+    || !interestRate.value || !radioButtonsChecked) {
     event.preventDefault();
-    let result = calculateRepayment();
-    monthlyPayments.textContent = result[0];
-    totalPayments.textContent = result[1];
+    formValidation()
+  } else {
+
+    if (mortgageType === 'interestOnly') {
+      event.preventDefault();
+      let result = calculateInterestOnly();
+      monthlyPayments.textContent = result[0];
+      totalPayments.textContent = result[1];
+
+    } else if (mortgageType === 'repayment') {
+      event.preventDefault();
+      let result = calculateRepayment();
+      monthlyPayments.textContent = result[0];
+      totalPayments.textContent = result[1];
+    }
   }
 });
+
+//Function call end ---------------------------------------------
+
+
+
+//Calculate interest only start ---------------------------------
 
 function calculateInterestOnly() {
   let decimal = interestRateValue / 100;
@@ -113,8 +156,11 @@ function calculateInterestOnly() {
   let monthlyInterest = yearlyInterest / 12;
   let totalInterest = yearlyInterest * termValue;
 
-  return [monthlyInterest.toString(), totalInterest.toString()];
+  return [Math.floor(monthlyInterest).toString(), Math.floor(totalInterest).toString()];
 }
+
+//Calculate interest only end -----------------------------------
+
 
 
 //Calculate repayment start -------------------------------------
@@ -147,6 +193,61 @@ function calculateRepayment() {
   let monthlyPayments = yearlyPayments / 12;
   console.log(monthlyPayments, 'monthly')
 
-  return [monthlyPayments.toString(), totalPayments.toString()]
+  return [Math.floor(monthlyPayments).toString(), Math.floor(totalPayments).toString()]
 }
 //Calculate repayment end ---------------------------------------
+
+//Calculations end -------------------------------------------------------------
+
+
+
+//Form valitation start---------------------------------------------------------
+
+button.addEventListener('click', formValidation);
+
+function formValidation() {
+  if (!mortgageAmount.value) {
+    amountError.style.display = 'flex';
+    amountWrapper.style.borderColor = red;
+    pound.style.background = red;
+    pound.style.color = 'white';
+  } else {
+    amountError.style.display = 'none'
+    amountWrapper.style.borderColor = blue;
+    pound.style.backgroundColor = lightBlue;
+    pound.style.color = blue
+  }
+
+  if (!mortgageTerm.value) {
+    termError.style.display = 'flex';
+  } else {
+    termError.style.display = 'none'
+  }
+
+  if (!interestRate.value) {
+    rateError.style.display = 'flex';
+  } else {
+    rateError.style.display = 'none'
+  }
+
+  if (!interestRate.value) {
+    rateError.style.display = 'flex';
+  } else {
+    rateError.style.display = 'none'
+  }
+
+  if (!radioButtonsChecked) {
+    typeError.style.display = 'flex';
+  } else {
+    typeError.style.display = 'none';
+  }
+
+  document.addEventListener('keyup', formValidation);
+  radioButtons[0].addEventListener('click', formValidation);
+  radioButtons[1].addEventListener('click', formValidation);
+}
+
+
+
+
+//Form valitation end ----------------------------------------------------------

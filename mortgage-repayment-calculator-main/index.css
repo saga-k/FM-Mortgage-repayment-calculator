@@ -129,6 +129,7 @@ form {
 .wrapper {
   border: solid, 1.5px, var(--blue500);
   border-radius: 5px;
+  margin-bottom: 0.5rem;
 }
 
 form input {
@@ -169,7 +170,7 @@ input::-webkit-inner-spin-button {
 }
 
 #pound {
-  border-radius: 5px 0 0 5px;
+  border-radius: 4px 0 0 4px;
 }
 
 #amountInput {
@@ -295,6 +296,19 @@ input[type="radio"] {
 
 
 /*Radio buttons end--------------------------------------------*/
+
+
+
+/*Errors start ------------------------------------------------*/
+.error {
+  font-size: 14px;
+  margin-top: 5px;
+  color: var(--red);
+}
+
+/*Errors end --------------------------------------------------*/
+
+
 
 form button {
   grid-column: 1/5;
