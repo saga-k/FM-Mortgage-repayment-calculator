@@ -54,6 +54,7 @@ completedResults.style.display = 'none';
 emptyResults.style.display = 'flex';
 
 
+
 //Initial styling end ----------------------------------------------------------
 
 //Styling functions start ------------------------------------------------------

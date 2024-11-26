@@ -24,10 +24,13 @@
   <article id="card">
     <div id="left">
       <form>
-        <h1 id="formTitle">Mortgage Calculator</h1>
-        <a id="clearAll">Clear All</a>
+        <div class="horizontalFlex">
+          <h1 id="formTitle">Mortgage Calculator</h1>
+          <a id="clearAll">Clear All</a>
+        </div>
 
         <!-- amount start--------------------------------------->
+
         <div id="amount">
           <label class="label">Mortgage Amount</label>
           <div id="amountWrapper" class="wrapper">
@@ -40,29 +43,31 @@
         <!-- amount end----------------------------------------->
 
 
-        <!-- years start---------------------------------------->
+        <!-- term start---------------------------------------->
+        <div class="horizontalFlex">
 
-        <div id="term">
-          <label class="label">Mortgage Term</label>
-          <div id="termWrapper" class="wrapper">
-            <input type="number" id="termInput">
-            <div id="years" class="inputType">Years</div>
+          <div id="term">
+            <label class="label">Mortgage Term</label>
+            <div id="termWrapper" class="wrapper">
+              <input type="number" id="termInput">
+              <div id="years" class="inputType">Years</div>
+            </div>
+            <p class="error" id="termError">This field is required</p>
           </div>
-          <p class="error" id="termError">This field is required</p>
-        </div>
 
-        <!-- years end------------------------------------------>
+          <!-- term end------------------------------------------>
 
 
-        <!-- Interest rate start-------------------------------->
+          <!-- Interest rate start-------------------------------->
 
-        <div id="interestRate">
-          <label class="label">Interest Rate</label>
-          <div id="rateWrapper" class="wrapper">
-            <input type="number" id="interestRateInput">
-            <div id="percent" class="inputType">%</div>
+          <div id="interestRate">
+            <label class="label">Interest Rate</label>
+            <div id="rateWrapper" class="wrapper">
+              <input type="number" id="interestRateInput">
+              <div id="percent" class="inputType">%</div>
+            </div>
+            <p class="error" id="rateError">This field is required</p>
           </div>
-          <p class="error" id="rateError">This field is required</p>
         </div>
 
         <!-- Interest rate end---------------------------------->

@@ -39,6 +39,7 @@ rateError.style.display = 'none';
 typeError.style.display = 'none';
 completedResults.style.display = 'none';
 emptyResults.style.display = 'flex';
+clearAll.style.cursor = 'poiter';
 //Initial styling end ----------------------------------------------------------
 //Styling functions start ------------------------------------------------------
 radioRepayment.addEventListener('click', radioActiveState);
