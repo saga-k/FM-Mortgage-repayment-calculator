@@ -11,6 +11,8 @@ var mortgageAmount = document.querySelector('#amountInput');
 var amountWrapper = document.querySelector('#amountWrapper');
 var pound = document.querySelector('#pound');
 var mortgageTerm = document.querySelector('#termInput');
+var termWrapper = document.querySelector('#termWrapper');
+var years = document.querySelector('#years');
 var interestRate = document.querySelector('#interestRateInput');
 var radioRepayment = document.querySelector('#radioRepayment');
 var labelRepayment = document.querySelector('#repaymentLabel');
@@ -125,23 +127,21 @@ function calculateInterestOnly() {
 //Calculate repayment start -------------------------------------
 function calculateRepayment() {
     var decimal = interestRateValue / 100;
-    console.log(decimal, 'decimal');
     var yearlyRepayment = amountValue / termValue;
-    console.log(yearlyRepayment, 'yearlyRepayment');
     var yearlyInterest = amountValue * decimal;
-    var repaid = 0;
     var amountLeft = amountValue;
-    var totalPayments = 0;
+    var totalInterest = 0;
     for (var i = 0; i < termValue; i++) {
-        repaid += yearlyRepayment;
         amountLeft -= yearlyRepayment;
+        console.log(amountLeft, 'amountleft');
         yearlyInterest = amountLeft * decimal;
-        totalPayments += (amountLeft + yearlyInterest);
+        console.log(yearlyInterest, 'yearlyInterest');
+        totalInterest += yearlyInterest;
+        console.log(totalInterest, 'totalinterest');
     }
-    console.log(totalPayments, 'total');
+    var totalPayments = amountValue + totalInterest;
     var yearlyPayments = totalPayments / termValue;
     var monthlyPayments = yearlyPayments / 12;
-    console.log(monthlyPayments, 'monthly');
     return [Math.floor(monthlyPayments).toString(), Math.floor(totalPayments).toString()];
 }
 //Calculate repayment end ---------------------------------------
@@ -163,9 +163,15 @@ function formValidation() {
     }
     if (!mortgageTerm.value) {
         termError.style.display = 'flex';
+        termWrapper.style.borderColor = red;
+        years.style.backgroundColor = red;
+        years.style.color = 'white';
     }
     else {
         termError.style.display = 'none';
+        termWrapper.style.borderColor = blue;
+        years.style.backgroundColor = lightBlue;
+        years.style.color = blue;
     }
     if (!interestRate.value) {
         rateError.style.display = 'flex';

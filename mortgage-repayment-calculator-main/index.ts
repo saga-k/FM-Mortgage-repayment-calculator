@@ -13,8 +13,10 @@ const mortgageAmount = document.querySelector('#amountInput') as HTMLInputElemen
 const amountWrapper = document.querySelector('#amountWrapper') as HTMLElement;
 const pound = document.querySelector('#pound') as HTMLElement;
 
-
 const mortgageTerm = document.querySelector('#termInput') as HTMLInputElement;
+const termWrapper = document.querySelector('#termWrapper') as HTMLElement;
+const years = document.querySelector('#years') as HTMLElement;
+
 const interestRate = document.querySelector('#interestRateInput') as HTMLInputElement;
 
 const radioRepayment = document.querySelector('#radioRepayment') as HTMLInputElement;
@@ -166,36 +168,31 @@ function calculateInterestOnly() {
 //Calculate repayment start -------------------------------------
 
 function calculateRepayment() {
+
   let decimal = interestRateValue / 100;
-  console.log(decimal, 'decimal');
-
   let yearlyRepayment = amountValue / termValue;
-  console.log(yearlyRepayment, 'yearlyRepayment');
-
   let yearlyInterest = amountValue * decimal;
-  let repaid = 0
   let amountLeft = amountValue
-  let totalPayments = 0
+  let totalInterest = 0
 
   for (let i = 0; i < termValue; i++) {
-    repaid += yearlyRepayment
-
-    amountLeft -= yearlyRepayment;
-
-    yearlyInterest = amountLeft * decimal;
-
-    totalPayments += (amountLeft + yearlyInterest);
+    amountLeft -= yearlyRepayment
+    console.log(amountLeft, 'amountleft')
+    yearlyInterest = amountLeft * decimal
+    console.log(yearlyInterest, 'yearlyInterest')
+    totalInterest += yearlyInterest;
+    console.log(totalInterest, 'totalinterest')
   }
 
-
-  console.log(totalPayments, 'total')
+  let totalPayments = amountValue + totalInterest;
   let yearlyPayments = totalPayments / termValue;
   let monthlyPayments = yearlyPayments / 12;
-  console.log(monthlyPayments, 'monthly')
 
   return [Math.floor(monthlyPayments).toString(), Math.floor(totalPayments).toString()]
 }
 //Calculate repayment end ---------------------------------------
+
+
 
 //Calculations end -------------------------------------------------------------
 
@@ -220,8 +217,15 @@ function formValidation() {
 
   if (!mortgageTerm.value) {
     termError.style.display = 'flex';
+    termWrapper.style.borderColor = red;
+    years.style.backgroundColor = red;
+    years.style.color = 'white';
   } else {
     termError.style.display = 'none'
+    termWrapper.style.borderColor = blue;
+    years.style.backgroundColor = lightBlue;
+    years.style.color = blue;
+
   }
 
   if (!interestRate.value) {

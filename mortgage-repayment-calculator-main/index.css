@@ -196,7 +196,7 @@ input::-webkit-inner-spin-button {
 }
 
 #years {
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 4px 4px 0;
 }
 
 #termInput {
@@ -222,7 +222,7 @@ input::-webkit-inner-spin-button {
 }
 
 #percent {
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 4px 4px 0;
 }
 
 #interestRate input {
