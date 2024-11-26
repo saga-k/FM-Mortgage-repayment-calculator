@@ -14,6 +14,8 @@ var mortgageTerm = document.querySelector('#termInput');
 var termWrapper = document.querySelector('#termWrapper');
 var years = document.querySelector('#years');
 var interestRate = document.querySelector('#interestRateInput');
+var rateWrapper = document.querySelector('#rateWrapper');
+var percent = document.querySelector('#percent');
 var radioRepayment = document.querySelector('#radioRepayment');
 var labelRepayment = document.querySelector('#repaymentLabel');
 var interestOnlyRadio = document.querySelector('#radioInterestOnly');
@@ -35,34 +37,45 @@ amountError.style.display = 'none';
 termError.style.display = 'none';
 rateError.style.display = 'none';
 typeError.style.display = 'none';
+completedResults.style.display = 'none';
+emptyResults.style.display = 'flex';
 //Initial styling end ----------------------------------------------------------
 //Styling functions start ------------------------------------------------------
 radioRepayment.addEventListener('click', radioActiveState);
 interestOnlyRadio.addEventListener('click', radioActiveState);
 function radioActiveState() {
     radioButtonsChecked = document.querySelector('input[name="mortgageType"]:checked');
-    if (radioButtonsChecked.value === 'repayment') {
-        labelRepayment.style.borderColor = lime;
-        labelRepayment.style.backgroundColor = lime95;
-        interestOnlyLabel.style.borderColor = blue;
-        interestOnlyLabel.style.backgroundColor = 'white';
-    }
-    else if (radioButtonsChecked.value === 'interestOnly') {
-        interestOnlyLabel.style.borderColor = lime;
-        interestOnlyLabel.style.backgroundColor = lime95;
-        labelRepayment.style.borderColor = blue;
-        labelRepayment.style.backgroundColor = 'white';
+    if (radioButtonsChecked) {
+        if (radioButtonsChecked.value === 'repayment') {
+            labelRepayment.style.borderColor = lime;
+            labelRepayment.style.backgroundColor = lime95;
+            interestOnlyLabel.style.borderColor = blue;
+            interestOnlyLabel.style.backgroundColor = 'white';
+        }
+        else if (radioButtonsChecked.value === 'interestOnly') {
+            interestOnlyLabel.style.borderColor = lime;
+            interestOnlyLabel.style.backgroundColor = lime95;
+            labelRepayment.style.borderColor = blue;
+            labelRepayment.style.backgroundColor = 'white';
+        }
+        else {
+            labelRepayment.style.borderColor = blue;
+            labelRepayment.style.borderColor = blue;
+            labelRepayment.style.backgroundColor = 'white';
+            labelRepayment.style.backgroundColor = 'white';
+        }
     }
     else {
+        interestOnlyLabel.style.borderColor = blue;
+        interestOnlyLabel.style.backgroundColor = 'white';
         labelRepayment.style.borderColor = blue;
-        labelRepayment.style.borderColor = blue;
-        labelRepayment.style.backgroundColor = 'white';
         labelRepayment.style.backgroundColor = 'white';
     }
 }
 ;
 //Styling functions end --------------------------------------------------------
 //Form inputs start ------------------------------------------------------------
+//Save input to variables start ---------------------------------
 var amountValue = Number(mortgageAmount.value);
 var termValue = Number(mortgageTerm.value);
 var interestRateValue = Number(interestRate.value);
@@ -89,6 +102,20 @@ function updateType() {
         mortgageType = '';
     }
 }
+//Save input to variables end -----------------------------------
+//Clear all start -----------------------------------------------
+clearAll.addEventListener('click', clear);
+function clear() {
+    mortgageAmount.value = '';
+    mortgageTerm.value = '';
+    interestRate.value = '';
+    radioButtons[0].checked = false;
+    radioButtons[1].checked = false;
+    radioActiveState();
+    completedResults.style.display = 'none';
+    emptyResults.style.display = 'flex';
+}
+//Clear all end -------------------------------------------------
 //Form inputs end --------------------------------------------------------------
 //Calculations start -----------------------------------------------------------
 //Function call start -------------------------------------------
@@ -99,6 +126,8 @@ button.addEventListener("click", function (event) {
         formValidation();
     }
     else {
+        completedResults.style.display = 'flex';
+        emptyResults.style.display = 'none';
         if (mortgageType === 'interestOnly') {
             event.preventDefault();
             var result = calculateInterestOnly();
@@ -175,15 +204,15 @@ function formValidation() {
     }
     if (!interestRate.value) {
         rateError.style.display = 'flex';
+        rateWrapper.style.borderColor = red;
+        percent.style.backgroundColor = red;
+        percent.style.color = 'white';
     }
     else {
         rateError.style.display = 'none';
-    }
-    if (!interestRate.value) {
-        rateError.style.display = 'flex';
-    }
-    else {
-        rateError.style.display = 'none';
+        rateWrapper.style.borderColor = blue;
+        percent.style.backgroundColor = lightBlue;
+        percent.style.color = blue;
     }
     if (!radioButtonsChecked) {
         typeError.style.display = 'flex';

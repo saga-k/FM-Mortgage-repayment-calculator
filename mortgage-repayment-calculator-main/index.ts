@@ -18,6 +18,8 @@ const termWrapper = document.querySelector('#termWrapper') as HTMLElement;
 const years = document.querySelector('#years') as HTMLElement;
 
 const interestRate = document.querySelector('#interestRateInput') as HTMLInputElement;
+const rateWrapper = document.querySelector('#rateWrapper') as HTMLInputElement;
+const percent = document.querySelector('#percent') as HTMLElement;
 
 const radioRepayment = document.querySelector('#radioRepayment') as HTMLInputElement;
 const labelRepayment = document.querySelector('#repaymentLabel') as HTMLInputElement;
@@ -25,7 +27,7 @@ const labelRepayment = document.querySelector('#repaymentLabel') as HTMLInputEle
 const interestOnlyRadio = document.querySelector('#radioInterestOnly') as HTMLElement;
 const interestOnlyLabel = document.querySelector('#interestOnlyLabel') as HTMLElement;
 
-const radioButtons = document.querySelectorAll('input[name="mortgageType"]');
+const radioButtons = document.querySelectorAll('input[name="mortgageType"]') as ArrayLike<HTMLInputElement>;
 let radioButtonsChecked = document.querySelector('input[name="mortgageType"]:checked') as HTMLInputElement;
 
 const button = document.querySelector('button') as HTMLElement;
@@ -48,6 +50,9 @@ termError.style.display = 'none';
 rateError.style.display = 'none';
 typeError.style.display = 'none';
 
+completedResults.style.display = 'none';
+emptyResults.style.display = 'flex';
+
 
 //Initial styling end ----------------------------------------------------------
 
@@ -58,25 +63,32 @@ interestOnlyRadio.addEventListener('click', radioActiveState);
 
 function radioActiveState() {
   radioButtonsChecked = document.querySelector('input[name="mortgageType"]:checked') as HTMLInputElement;
-  if (radioButtonsChecked.value === 'repayment') {
-    labelRepayment.style.borderColor = lime;
-    labelRepayment.style.backgroundColor = lime95;
+  if (radioButtonsChecked) {
+    if (radioButtonsChecked.value === 'repayment') {
+      labelRepayment.style.borderColor = lime;
+      labelRepayment.style.backgroundColor = lime95;
 
+      interestOnlyLabel.style.borderColor = blue;
+      interestOnlyLabel.style.backgroundColor = 'white';
+
+    } else if (radioButtonsChecked.value === 'interestOnly') {
+      interestOnlyLabel.style.borderColor = lime;
+      interestOnlyLabel.style.backgroundColor = lime95;
+
+      labelRepayment.style.borderColor = blue;
+      labelRepayment.style.backgroundColor = 'white';
+
+    } else {
+      labelRepayment.style.borderColor = blue;
+      labelRepayment.style.borderColor = blue;
+
+      labelRepayment.style.backgroundColor = 'white';
+      labelRepayment.style.backgroundColor = 'white';
+    }
+  } else {
     interestOnlyLabel.style.borderColor = blue;
     interestOnlyLabel.style.backgroundColor = 'white';
-
-  } else if (radioButtonsChecked.value === 'interestOnly') {
-    interestOnlyLabel.style.borderColor = lime;
-    interestOnlyLabel.style.backgroundColor = lime95;
-
     labelRepayment.style.borderColor = blue;
-    labelRepayment.style.backgroundColor = 'white';
-
-  } else {
-    labelRepayment.style.borderColor = blue;
-    labelRepayment.style.borderColor = blue;
-
-    labelRepayment.style.backgroundColor = 'white';
     labelRepayment.style.backgroundColor = 'white';
   }
 };
@@ -84,6 +96,8 @@ function radioActiveState() {
 //Styling functions end --------------------------------------------------------
 
 //Form inputs start ------------------------------------------------------------
+
+//Save input to variables start ---------------------------------
 
 let amountValue = Number(mortgageAmount.value);
 let termValue = Number(mortgageTerm.value);
@@ -114,6 +128,28 @@ function updateType() {
     mortgageType = ''
   }
 }
+
+//Save input to variables end -----------------------------------
+
+
+
+//Clear all start -----------------------------------------------
+
+clearAll.addEventListener('click', clear);
+
+function clear() {
+  mortgageAmount.value = '';
+  mortgageTerm.value = '';
+  interestRate.value = '';
+  radioButtons[0].checked = false;
+  radioButtons[1].checked = false;
+  radioActiveState();
+  completedResults.style.display = 'none';
+  emptyResults.style.display = 'flex';
+}
+
+//Clear all end -------------------------------------------------
+
 //Form inputs end --------------------------------------------------------------
 
 
@@ -129,6 +165,9 @@ button.addEventListener("click", function (event) {
     formValidation()
   } else {
 
+    completedResults.style.display = 'flex';
+    emptyResults.style.display = 'none';
+
     if (mortgageType === 'interestOnly') {
       event.preventDefault();
       let result = calculateInterestOnly();
@@ -141,6 +180,7 @@ button.addEventListener("click", function (event) {
       monthlyPayments.textContent = result[0];
       totalPayments.textContent = result[1];
     }
+
   }
 });
 
@@ -230,14 +270,15 @@ function formValidation() {
 
   if (!interestRate.value) {
     rateError.style.display = 'flex';
-  } else {
-    rateError.style.display = 'none'
-  }
+    rateWrapper.style.borderColor = red;
+    percent.style.backgroundColor = red;
+    percent.style.color = 'white';
 
-  if (!interestRate.value) {
-    rateError.style.display = 'flex';
   } else {
     rateError.style.display = 'none'
+    rateWrapper.style.borderColor = blue;
+    percent.style.backgroundColor = lightBlue;
+    percent.style.color = blue;
   }
 
   if (!radioButtonsChecked) {
@@ -250,8 +291,5 @@ function formValidation() {
   radioButtons[0].addEventListener('click', formValidation);
   radioButtons[1].addEventListener('click', formValidation);
 }
-
-
-
 
 //Form valitation end ----------------------------------------------------------

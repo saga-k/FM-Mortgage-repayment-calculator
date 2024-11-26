@@ -215,7 +215,7 @@ input::-webkit-inner-spin-button {
   width: 100%;
 }
 
-#interestRateWrapper {
+#rateWrapper {
   margin-top: 0.5rem;
   height: 3rem;
   display: flex;
